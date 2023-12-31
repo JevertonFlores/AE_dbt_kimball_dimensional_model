@@ -4,17 +4,7 @@ WITH stg AS (
     FROM {{ ref('stg_order_items') }}
 ),
 
-defining_elements AS (
-    SELECT
-        id
-        ,order_id
-        ,order_type_id
-        ,item
-        ,ARRAY_LENGTH(STRING_TO_ARRAY(item, '@~|~@'), 1) AS num_elements
-    FROM stg
-),
-
-treatment_array AS (
+treatment_sales_status AS (
     SELECT
         id
         ,order_id
@@ -23,10 +13,38 @@ treatment_array AS (
         ,SPLIT_PART(UPPER(item), '@~|~@', 2) AS model
         ,SPLIT_PART(item, '@~|~@', 3) AS year_manufacturer
         ,SPLIT_PART(UPPER(item), '@~|~@', 4) AS color
+        ,0 AS status_id
         ,SPLIT_PART(UPPER(item), '@~|~@', 5) AS status
         ,SPLIT_PART(item, '@~|~@', 6) AS price
-    FROM defining_elements
-    WHERE num_elements = 6
+    FROM stg
+    WHERE order_type_id = 1
+),
+
+treatment_other_status AS (
+    SELECT
+        id
+        ,order_id
+        ,order_type_id
+        ,(
+            SELECT DISTINCT 
+                manufacturer 
+            FROM treatment_sales_status 
+            WHERE treatment_sales_status.model = SPLIT_PART(UPPER(stg.item), '@~|~@', 1)
+        ) AS manufacturer
+        ,SPLIT_PART(UPPER(item), '@~|~@', 1) AS model
+        ,NULL AS year_manufacturer
+        ,NULL AS color
+        ,SPLIT_PART(UPPER(item), '@~|~@', 2)::INTEGER AS status_id
+        ,SPLIT_PART(UPPER(item), '@~|~@', 3) AS status
+        ,SPLIT_PART(item, '@~|~@', 4) AS price
+    FROM stg
+    WHERE order_type_id <> 1
+),
+
+union_status AS (
+    SELECT * FROM treatment_sales_status
+    UNION ALL
+    SELECT * FROM treatment_other_status
 ),
 
 treated AS (
@@ -46,6 +64,7 @@ treated AS (
             WHEN color = 'SILVER' THEN 'PRATA'
             ELSE 'OUTROS'
         END AS color
+        ,status_id
         ,CASE
             WHEN status = 'USED' THEN 'USADO'
             WHEN status = 'NEW' THEN 'NOVO'
@@ -53,7 +72,7 @@ treated AS (
             ELSE 'OUTROS'
         END AS status
         ,price::NUMERIC
-    FROM treatment_array
+    FROM union_status
 )
 
 SELECT
