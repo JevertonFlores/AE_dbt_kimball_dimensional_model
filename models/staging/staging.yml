@@ -1,0 +1,51 @@
+
+version: 2
+
+models:
+  - name: stg_company_branches
+    description: Staging table for company branches data.
+    columns:
+      - name: id
+        description: The company branche key.
+        tests:
+          - not_null
+
+  - name: stg_order_items
+    description: Staging table for order items data.
+    columns:
+      - name: id
+        description: The order items key.
+        tests:
+          - not_null
+
+  - name: stg_order_types
+    description: Staging table for order types data.
+    columns:
+      - name: id
+        description: The order types key.
+        tests:
+          - not_null
+
+  - name: stg_orders
+    description: Staging table for orders.
+    columns:
+      - name: id
+        description: The orders key.
+        tests:
+          - not_null
+
+  - name: stg_employees
+    description: Staging table for employees.
+    columns:
+      - name: id
+        description: The employee key.
+        tests:
+          - not_null
+
+  - name: stg_customers
+    description: Staging table for customers.
+    columns:
+      - name: id
+        description: The customer key.
+        tests:
+          - not_null

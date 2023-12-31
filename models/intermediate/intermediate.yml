@@ -1,0 +1,59 @@
+
+version: 2
+
+models:
+  - name: int_company_branches
+    description: Company branches table with some treatments.
+    columns:
+      - name: company_branches_id
+        description: The company branche key.
+        tests:
+          - not_null
+
+  - name: int_order_items
+    description: Order items table with some treatments.
+    columns:
+      - name: order_item_id
+        description: The order items key.
+        tests:
+          - not_null
+
+  - name: int_order_types
+    description: Order types table with some treatments.
+    columns:
+      - name: order_types_id
+        description: The order types key.
+        tests:
+          - not_null
+
+  - name: int_order_status
+    description: Order status table with some treatments.
+    columns:
+      - name: order_status_id
+        description: The order status key.
+        tests:
+          - not_null
+
+  - name: int_orders
+    description: Orders table with some treatments.
+    columns:
+      - name: order_id
+        description: The orders key.
+        tests:
+          - not_null
+
+  - name: int_employees
+    description: Emplotees table with some treatments.
+    columns:
+      - name: employee_id
+        description: The employee key.
+        tests:
+          - not_null
+
+  - name: int_customers
+    description: Customer table with some treatments.
+    columns:
+      - name: customer_id
+        description: The customer key.
+        tests:
+          - not_null
