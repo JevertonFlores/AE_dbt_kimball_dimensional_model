@@ -6,7 +6,7 @@ WITH stg AS (
 
 treated AS (
     SELECT DISTINCT
-        id AS order_types_id
+        id AS order_type_id
         ,CASE
             WHEN type = 'sales' THEN 'VENDAS'
             WHEN type = 'technical_review' THEN 'REVISÃO TÉCNICA'

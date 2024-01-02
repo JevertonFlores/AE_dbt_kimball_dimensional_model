@@ -22,7 +22,7 @@ treated AS (
     ,UPPER(city) AS city
     ,latitude
     ,longitude
-    ,recurring_customer AS id_recurring
+    ,recurring_customer AS is_recurring
     ,UPPER(customer_level) AS level
     ,registration_date
     FROM stg

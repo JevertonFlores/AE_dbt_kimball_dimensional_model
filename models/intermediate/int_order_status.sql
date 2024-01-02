@@ -14,8 +14,6 @@ treated AS (
             WHEN order_status = 'delayed' THEN 'ATRASADO'
             ELSE 'OUTROS'
         END AS order_status
-        ,TO_TIMESTAMP(order_date, 'YYYY-MM-DD HH24:MI:SS') AS order_date
-        ,TO_TIMESTAMP(return_date, 'YYYY-MM-DD HH24:MI:SS') AS return_date
     FROM stg
 )
 
