@@ -66,10 +66,11 @@ treated AS (
         END AS color
         ,status_id
         ,CASE
-            WHEN status = 'USED' THEN 'USADO'
-            WHEN status = 'NEW' THEN 'NOVO'
-            WHEN status = 'SEMI-NEW' THEN 'SEMI-NOVO'
-            ELSE 'OUTROS'
+            WHEN STATUS IS NULL THEN 'OUTROS'
+            WHEN order_type_id = 1 AND status = 'USED' THEN 'USADO'
+            WHEN order_type_id = 1 AND status = 'NEW' THEN 'NOVO'
+            WHEN order_type_id = 1 AND status = 'SEMI-NEW' THEN 'SEMI-NOVO'
+            ELSE status
         END AS status
         ,price::NUMERIC
     FROM union_status
