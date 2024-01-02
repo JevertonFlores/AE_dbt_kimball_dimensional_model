@@ -6,7 +6,7 @@ WITH stg AS (
 
 treated AS (
 SELECT DISTINCT
-    id AS company_branches_id
+    id AS company_branch_id
     ,country_code
     ,UPPER(country) AS country
     ,state

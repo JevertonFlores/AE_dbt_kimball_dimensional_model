@@ -23,7 +23,7 @@ treated AS (
     ,latitude
     ,longitude
     ,recurring_customer AS id_recurring
-    ,UPPER(customer_level) AS levell
+    ,UPPER(customer_level) AS level
     ,registration_date
     FROM stg
 )
