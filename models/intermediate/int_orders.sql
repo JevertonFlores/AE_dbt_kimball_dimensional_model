@@ -7,7 +7,6 @@ WITH stg AS (
 treatment_types AS (
     SELECT
         id::INTEGER AS order_id
-        ,departament_id
         ,employee_id
         ,order_type_id
         ,customer_id
@@ -21,7 +20,7 @@ treatment_types AS (
 treated AS (
     SELECT
         order_id
-        ,departament_id
+        ,employee_id
         ,order_type_id
         ,customer_id::INTEGER AS customer_id
         ,order_date
