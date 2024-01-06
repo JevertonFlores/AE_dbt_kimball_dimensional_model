@@ -19,15 +19,18 @@ treatment_types AS (
 
 treated AS (
     SELECT
-        order_id
-        ,employee_id
-        ,order_type_id
-        ,customer_id::INTEGER AS customer_id
-        ,order_date
-        ,return_date
-        ,(return_date::DATE - order_date::DATE) AS days_diff
-        ,ROUND(EXTRACT(EPOCH FROM return_date - order_date) / 3600) AS diff_hours
-    FROM treatment_types
+        tt.order_id
+        ,tt.employee_id
+        ,ep.company_branches_id
+        ,tt.order_type_id
+        ,tt.customer_id::INTEGER AS customer_id
+        ,tt.order_date
+        ,tt.return_date
+        ,(tt.return_date::DATE - tt.order_date::DATE) AS days_diff
+        ,ROUND(EXTRACT(EPOCH FROM tt.return_date - tt.order_date) / 3600) AS hours_diff
+    FROM treatment_types tt
+    LEFT JOIN {{ ref('int_employees') }} ep
+        ON tt.employee_id = ep.employee_id
 )
 
 SELECT
