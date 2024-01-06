@@ -20,6 +20,7 @@ treatment_types AS (
 treated AS (
     SELECT
         tt.order_id
+        ,oi.order_item_id
         ,tt.employee_id
         ,ep.company_branches_id
         ,tt.order_type_id
@@ -31,6 +32,9 @@ treated AS (
     FROM treatment_types tt
     LEFT JOIN {{ ref('int_employees') }} ep
         ON tt.employee_id = ep.employee_id
+    LEFT JOIN {{ ref('int_order_items') }} oi
+        ON tt.order_id = oi.order_id
+    WHERE oi.order_item_id IS NOT NULL
 )
 
 SELECT
