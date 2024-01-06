@@ -35,6 +35,7 @@ treated AS (
     LEFT JOIN {{ ref('int_order_items') }} oi
         ON tt.order_id = oi.order_id
     WHERE oi.order_item_id IS NOT NULL
+    -- Foram removidos os registros onde os itens não possuem ordem de vendas.
 )
 
 SELECT

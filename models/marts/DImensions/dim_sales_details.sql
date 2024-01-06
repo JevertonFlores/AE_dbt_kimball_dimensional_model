@@ -15,7 +15,7 @@ distinct_vehicles as (
 
 treated AS (
     SELECT
-        ROW_NUMBER() OVER (ORDER BY year_manufacturer, color, status) AS sk_vehicle
+        ROW_NUMBER() OVER (ORDER BY year_manufacturer, color, status) AS sk_sales_details
         ,year_manufacturer
         ,color
         ,status
