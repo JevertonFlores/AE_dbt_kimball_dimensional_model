@@ -72,6 +72,7 @@ vehicles AS (
 final_orders AS (
     SELECT
         io.order_id
+        ,TO_CHAR(order_date::DATE, 'YYYYMMDD')::INTEGER AS sk_date
         ,cb.sk_company_branch
         ,e.sk_employee
         ,ot.sk_order_type
@@ -81,8 +82,8 @@ final_orders AS (
         ,sd.sk_sales_details
         ,srv.sk_service
         ,veh.sk_vehicle
-        ,io.order_date
-        ,io.return_date
+        ,io.order_date::DATE
+        ,io.return_date::DATE
         ,io.days_diff
         ,io.hours_diff
     FROM intermediate_orders io
