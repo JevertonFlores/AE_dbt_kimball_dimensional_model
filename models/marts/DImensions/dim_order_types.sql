@@ -6,7 +6,7 @@ WITH intermediate AS (
 
 treated AS (
     SELECT
-        ROW_NUMBER() OVER (ORDER BY order_type_id) AS sk_employee
+        ROW_NUMBER() OVER (ORDER BY order_type_id) AS sk_order_type
         ,order_type_id
         ,type
         ,frequency
