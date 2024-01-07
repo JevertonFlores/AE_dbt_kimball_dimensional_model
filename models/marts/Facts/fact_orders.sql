@@ -86,6 +86,7 @@ final_orders AS (
         ,io.return_date::DATE
         ,io.days_diff
         ,io.hours_diff
+        ,oi.price
     FROM intermediate_orders io
     LEFT JOIN {{ ref('dim_company_branches') }} cb
         ON io.company_branches_id = cb.company_branch_id
@@ -105,10 +106,10 @@ final_orders AS (
         ON io.order_item_id = srv.order_item_id
     LEFT JOIN vehicles veh
         ON io.order_item_id = veh.order_item_id
+    LEFT JOIN {{ ref('int_order_items') }} oi
+        ON io.order_item_id = oi.order_item_id
 )
 
 SELECT
     *
 FROM final_orders
-
--- ADICIONAR O PRICE
