@@ -1,0 +1,5 @@
+﻿id,country_code,country,state,city,name,latitude,longitude,phone
+1,BR,Brazil,SP,São Paulo,1 - São Paulo,-23.5489,-46.6388,5972382874
+2,BR,Brazil,PR,Curitiba,2 - Curitiba,-25.4284,-49.2733,5195406236
+3,BR,Brazil,SC,Florianópolis,3 - Florianópolis,-27.5969,-48.5495,3737200372
+4,BR,Brazil,RS,Porto Alegre,4 - Porto Alegre,-30.0277,-51.2287,9905496604
