@@ -53,7 +53,8 @@ PS: A tabela dimensão dim_dates foi criada diretamenta no banco de dados, todas
 
 <h3>Lineage:</h3> 
 
-![image](https://github.com/JevertonFlores/AE_dbt_kimball_dimensional_model/assets/36814309/38575a71-79c3-4a4c-8942-6dcad30e32b9)  
+![image](https://github.com/JevertonFlores/AE_dbt_kimball_dimensional_model/assets/36814309/bebcc38d-0b57-499f-8db1-2fd11b5910fd) 
+
 
 
 <h3>Schemas e tabelas no Banco de Dados:</h3>  
@@ -65,9 +66,7 @@ PS: A tabela dimensão dim_dates foi criada diretamenta no banco de dados, todas
 <h3>Próximas atualizações:</h3> 
 
 - Instalação do package dbt-utils;
-- Criação de testes de qualidade nas dimensões e fato;
-- Criação de reports com análises prontas para consumo;
-- Visualização dos dados (talvez).
+- Criação de testes de qualidade nas dimensões e fato.
 
   
 
